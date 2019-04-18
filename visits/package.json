@@ -1,0 +1,12 @@
+{
+    "description": "description",
+    "author": { "name": "ruben chavarri" },
+    "license": "*",
+    "dependencies": {
+        "express": "*",
+        "redis": "*"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
