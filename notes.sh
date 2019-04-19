@@ -20,7 +20,7 @@ docker run -p 5000:8080 ruchavarri/simpleweb
 #specify work in background
 docker run -d redis
 
-#2) 
+#5) 
 docker-compose
 docker-compose up
 docker-compose up --build
@@ -32,7 +32,7 @@ docker-compose down
 docker-compose ps 
 
 
-#3) deploy in production
+#6) deploy in production
 install create-react-app -g
 create-react-app frontend
 docker run -p 3000:3000 471ebb623efe
@@ -49,6 +49,8 @@ docker-compose up
 docker exec -it d2e340202337 npm run test
 
 
+#7) Travis
+https://travis-ci.org/
 
 
 
