@@ -53,9 +53,51 @@ docker exec -it d2e340202337 npm run test
 https://travis-ci.org/
 
 
+#9) Dockerizing mutiple services
+#force rebuild docker-compose
+docker-compose up --build
 
+#digital ocean doesn't provide "cache elastic service"
 
+#13) kubernetes
 
+#config kubernetes
+kubectl apply -f 'filename' 
+#get kubernetes status
+kubectl get pods
+kubectl get services
+
+#get kubernetes ip insted of localhost
+minikube ip
+
+#update 
+kubectl apply -f client-pod.yml
+kubectl describe <object type> <object name (optional)>
+kubectl describe pod client-pod
+kubectl delete -f client-pod.yml
+
+kubectl get pods -o wide
+
+docker build -t ruchavarri/multi-client:v5 .
+docker push ruchavarri/multi-client:v5
+
+kubectl set image <object_tupe>/<object_name><container_name>=nex image to use>
+kubectl set image deployment/client-deployment client=ruchavarri/multi-client:v5
+
+#configure command line to point to virtual machine
+eval $(minikube docker-env)
+
+#interact with kubernetes with docker
+docker ps
+docker logs <containerID>
+docker exec -it <containerID> sh
+
+kubectl get pods
+kubectl log client-deployment-bb8fd8c98-7xz9w
+
+docker system prune -a
+
+#14) 
 
 
 
