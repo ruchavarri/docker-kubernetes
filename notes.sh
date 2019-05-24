@@ -1,4 +1,5 @@
-
+#full source code in 
+https://github.com/StephenGrider/DockerCasts
 
 #1) docker management
 docker create hello-world
@@ -98,6 +99,99 @@ kubectl log client-deployment-bb8fd8c98-7xz9w
 docker system prune -a
 
 #14) 
+
+kubectl apply -f k8s
+kubectl get deployments
+kubectl get pods
+kubectl get services
+kubectl logs server-deployment-565ccb65fc-ln2q5
+
+#PVC: Persistent Volume Claim
+#(197) Volume (in Kubernetes): persistant file system that it is not only store inside pod.
+#(199) Persistent Volume: Long term durable storage (that is no linked to pod / container)
+#(200) Persistent Volume Claim: Advertisement list of options
+
+kubectl get pv
+
+#Create Secrets
+
+kubectl create secret generic "secret-name" --from-literal key=value
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
+kubectl get secrets
+
+#(211) Load Balancer vs Ingress
+# LoadBalancer: Legacy way of getting network traffic into a cluster
+# Ingress: Exposes a set of services to the outside world
+
+# (216) Optional Reading on Ingress Nginx
+# Just in case you wanted to understand ingress-nginx a bit better, check out this article by Hongli Lai - https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html.  Hongli is an absolute genius, he co-created Phusion Passenger, an extremely popular webserver that integrates with Nginx.
+
+#https://kubernetes.github.io/ingress-nginx/deploy/#prerequisite-generic-deployment-command
+# init ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
+minikube addons enable ingress
+
+kubectl apply -f k8s
+
+# minikube dashboard
+minikube dashboard
+
+#16) Kubernetes Production Deployment
+
+https://cloud.google.com/products/calculator/
+
+#Why google cloud?
+#Google created Kubernetes! 
+#AWS only recently got Kubernetes support
+#Far, far easier to poke around Kubernetes on Google Cloud
+#Excellent documentation for begginers
+
+#(230) create a cluster
+
+docker run -it -v $(pwd):/app ruby:2.3 sh
+gem install travis --no-doc
+
+#config gcloud command line (using main account credentials)
+gcloud config set project multi-k8s-240723
+gcloud config set compute/zone us-central1-a
+gcloud container clusters get-credentials multi-cluster
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
+
+# What is HELM?
+https://kubernetes.github.io/ingress-nginx/deploy/#using-helm
+https://github.com/helm/helm
+https://helm.sh/docs/using_helm/#quickstart-guide
+
+# (RBAC) Role Based Access Control
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+clusterrolebinding.rbac.authorization.k8s.io/tiller-cluster-rule created
+
+helm init --service-account tiller --upgrade
+
+helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+
+#Review with source code
+https://github.com/StephenGrider/DockerCasts
+
+
+#17) HTTPS setup with Kubernetes
+domains.google.com
+
+#Config DNS: using Load Balancer IP (without ther port)
+
+github.com/jetstack/cert-manager
+
+kubectl get certificates
+
+kubectl get secrets
+
+
+
+
+
+
+
 
 
 
